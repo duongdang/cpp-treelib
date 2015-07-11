@@ -11,14 +11,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 add_definitions(-std=c++11)
 
-# find_package(Boost COMPONENTS system filesystem program_options REQUIRED)
-
 include_directories("${PROJECT_SOURCE_DIR}/include")
-# include_directories(${Boost_INCLUDE_DIRS} )
-
-# pkg_check_modules(LOG4CXX REQUIRED liblog4cxx)
-# include_directories(${LOG4CXX_INCLUDE_DIRS})
-# link_directories(${LOG4CXX_LIBRARY_DIRS})
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-long-long -pedantic")
 

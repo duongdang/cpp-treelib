@@ -1,4 +1,7 @@
 enable_testing()
+find_package(Boost REQUIRED)
+include_directories(${Boost_INCLUDE_DIRS} )
+
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS} src)
 

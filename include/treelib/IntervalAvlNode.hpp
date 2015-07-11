@@ -1,11 +1,11 @@
 // Copyright 2015 Duong Dang
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //     http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +18,7 @@
 #include <vector>
 #include <memory>
 #include <iostream>
-#include <boost/tuple/tuple.hpp>
+#include <tuple>
 
 #include <treelib/bst.hpp>
 #include <treelib/detail/avl_rotation.hpp>
@@ -29,7 +29,7 @@ namespace bst {
 template <typename NumberT, typename DataT>
 struct IntervalAvlNode {
     typedef std::pair<NumberT, NumberT> key_type;
-    typedef boost::tuple<const NumberT, const NumberT, DataT> value_type;
+    typedef std::tuple<const NumberT, const NumberT, DataT> value_type;
     typedef std::shared_ptr<IntervalAvlNode> node_ptr;
     typedef std::shared_ptr<const IntervalAvlNode> node_cptr;
 
@@ -47,14 +47,14 @@ struct IntervalAvlNode {
     IntervalAvlNode(const NumberT& iStart, const NumberT& iEnd, const DataT& iData)
         : _data(iData), _left(), _right(), _height(1), _start(iStart), _end(iEnd), _max(_end) {}
     IntervalAvlNode(const value_type& iValue)
-        : _data(boost::get<2>(iValue)), _left(), _right(), _height(1)
-        , _start(boost::get<0>(iValue)), _end(boost::get<1>(iValue)), _max(_end)
+        : _data(std::get<2>(iValue)), _left(), _right(), _height(1)
+        , _start(std::get<0>(iValue)), _end(std::get<1>(iValue)), _max(_end)
         {}
 
     virtual ~IntervalAvlNode() {}
 
     static const key_type getKey(const value_type& iValue) {
-        return std::make_pair(boost::get<0>(iValue), boost::get<1>(iValue));
+        return std::make_pair(std::get<0>(iValue), std::get<1>(iValue));
     }
     const key_type getKey() const { return std::make_pair(_start, _end); }
 
