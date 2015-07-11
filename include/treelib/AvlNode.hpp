@@ -16,7 +16,7 @@
 #define TREELIB_AVLNODE_HPP_
 
 #include <vector>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 #include <iostream>
 
 #include <treelib/bst.hpp>
@@ -29,8 +29,8 @@ template <typename KeyT, typename DataT>
 struct AvlNode {
     typedef KeyT key_type;
     typedef std::pair<const KeyT,  DataT> value_type;
-    typedef boost::shared_ptr<AvlNode> node_ptr;
-    typedef boost::shared_ptr<const AvlNode> node_cptr;
+    typedef std::shared_ptr<AvlNode> node_ptr;
+    typedef std::shared_ptr<const AvlNode> node_cptr;
 
     DataT _data;
     node_ptr _left;

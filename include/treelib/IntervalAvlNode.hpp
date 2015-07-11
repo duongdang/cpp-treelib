@@ -16,7 +16,7 @@
 #define TREELIB_INTERVALAVLNODE_HPP_
 
 #include <vector>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 #include <iostream>
 #include <boost/tuple/tuple.hpp>
 
@@ -30,8 +30,8 @@ template <typename NumberT, typename DataT>
 struct IntervalAvlNode {
     typedef std::pair<NumberT, NumberT> key_type;
     typedef boost::tuple<const NumberT, const NumberT, DataT> value_type;
-    typedef boost::shared_ptr<IntervalAvlNode> node_ptr;
-    typedef boost::shared_ptr<const IntervalAvlNode> node_cptr;
+    typedef std::shared_ptr<IntervalAvlNode> node_ptr;
+    typedef std::shared_ptr<const IntervalAvlNode> node_cptr;
 
     DataT _data;
     node_ptr _left;
