@@ -15,4 +15,6 @@ include_directories("${PROJECT_SOURCE_DIR}/include")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-long-long -pedantic")
 
+enable_testing()
+
 add_subdirectory(test)

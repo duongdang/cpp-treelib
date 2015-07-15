@@ -1,4 +1,3 @@
-enable_testing()
 find_package(Boost REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS} )
 
@@ -11,3 +10,4 @@ file(GLOB_RECURSE treelibtest_SRC
 
 add_executable(treelibTest ${treelibtest_SRC})
 target_link_libraries(treelibTest ${GTEST_BOTH_LIBRARIES} pthread)
+add_test(treelibTest treelibTest)
