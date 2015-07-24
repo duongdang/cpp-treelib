@@ -13,20 +13,24 @@
 // limitations under the License.
 
 #include <AvlTreeTest.hpp>
+#include <experimental/optional>
+
+namespace stdexp = std::experimental;
 
 namespace treelib {
 namespace bst {
+
 
 TEST(Dummy, Dummy) {
     ASSERT_TRUE(true);
 }
 
-bool operator== (boost::optional<int> iExpected, AvlTreeTest::NodeT::node_cptr ipNode) {
+bool operator== (stdexp::optional<int> iExpected, AvlTreeTest::NodeT::node_cptr ipNode) {
     if (iExpected) {
         if (!ipNode) {
             return false;
         }
-        return iExpected.get() == ipNode->getKey();
+        return *iExpected == ipNode->getKey();
     }
     else {
         return !ipNode;
@@ -93,7 +97,7 @@ TEST_F(AvlTreeTest, Construct1) {
     ASSERT_EQ(3, aArray.size());
     EXPECT_EQ(20, aArray[0]);
     EXPECT_EQ(4, aArray[1]);
-    EXPECT_EQ(boost::none, aArray[2]);
+    EXPECT_EQ(stdexp::nullopt, aArray[2]);
 }
 
 TEST_F(AvlTreeTest, Construct2) {
@@ -120,8 +124,8 @@ TEST_F(AvlTreeTest, Construct2) {
     EXPECT_EQ(26, aArray[2]);
     EXPECT_EQ(3, aArray[3]);
     EXPECT_EQ(9, aArray[4]);
-    EXPECT_EQ(boost::none, aArray[5]);
-    EXPECT_EQ(boost::none, aArray[6]);
+    EXPECT_EQ(stdexp::nullopt, aArray[5]);
+    EXPECT_EQ(stdexp::nullopt, aArray[6]);
 }
 
 TEST_F(AvlTreeTest, Construct3) {
@@ -152,13 +156,13 @@ TEST_F(AvlTreeTest, Construct3) {
     EXPECT_EQ(30, aArray[6]);
 
     EXPECT_EQ(2, aArray[7]);
-    EXPECT_EQ(boost::none, aArray[8]);
+    EXPECT_EQ(stdexp::nullopt, aArray[8]);
     EXPECT_EQ(7, aArray[9]);
     EXPECT_EQ(11, aArray[10]);
-    EXPECT_EQ(boost::none, aArray[11]);
-    EXPECT_EQ(boost::none, aArray[12]);
-    EXPECT_EQ(boost::none, aArray[13]);
-    EXPECT_EQ(boost::none, aArray[14]);
+    EXPECT_EQ(stdexp::nullopt, aArray[11]);
+    EXPECT_EQ(stdexp::nullopt, aArray[12]);
+    EXPECT_EQ(stdexp::nullopt, aArray[13]);
+    EXPECT_EQ(stdexp::nullopt, aArray[14]);
 }
 
 TEST_F(AvlTreeTest, Insert1a) {
@@ -225,7 +229,7 @@ TEST_F(AvlTreeTest, Insert2a) {
     EXPECT_EQ(4, aArray[1]);
     EXPECT_EQ(20, aArray[2]);
     EXPECT_EQ(3, aArray[3]);
-    EXPECT_EQ(boost::none, aArray[4]);
+    EXPECT_EQ(stdexp::nullopt, aArray[4]);
     EXPECT_EQ(15, aArray[5]);
     EXPECT_EQ(26, aArray[6]);
 }
@@ -255,7 +259,7 @@ TEST_F(AvlTreeTest, Insert2b) {
     EXPECT_EQ(20, aArray[2]);
     EXPECT_EQ(3, aArray[3]);
     EXPECT_EQ(8, aArray[4]);
-    EXPECT_EQ(boost::none, aArray[5]);
+    EXPECT_EQ(stdexp::nullopt, aArray[5]);
     EXPECT_EQ(26, aArray[6]);
 }
 TEST_F(AvlTreeTest, Insert3a) {
@@ -290,10 +294,10 @@ TEST_F(AvlTreeTest, Insert3a) {
     EXPECT_EQ(26, aArray[6]);
 
     EXPECT_EQ(2, aArray[7]);
-    EXPECT_EQ(boost::none, aArray[8]);
-    EXPECT_EQ(boost::none, aArray[9]);
-    EXPECT_EQ(boost::none, aArray[10]);
-    EXPECT_EQ(boost::none, aArray[11]);
+    EXPECT_EQ(stdexp::nullopt, aArray[8]);
+    EXPECT_EQ(stdexp::nullopt, aArray[9]);
+    EXPECT_EQ(stdexp::nullopt, aArray[10]);
+    EXPECT_EQ(stdexp::nullopt, aArray[11]);
     EXPECT_EQ(15, aArray[12]);
     EXPECT_EQ(21, aArray[13]);
     EXPECT_EQ(30, aArray[14]);
@@ -331,11 +335,11 @@ TEST_F(AvlTreeTest, Insert3b) {
     EXPECT_EQ(26, aArray[6]);
 
     EXPECT_EQ(2, aArray[7]);
-    EXPECT_EQ(boost::none, aArray[8]);
-    EXPECT_EQ(boost::none, aArray[9]);
+    EXPECT_EQ(stdexp::nullopt, aArray[8]);
+    EXPECT_EQ(stdexp::nullopt, aArray[9]);
     EXPECT_EQ(8, aArray[10]);
-    EXPECT_EQ(boost::none, aArray[11]);
-    EXPECT_EQ(boost::none, aArray[12]);
+    EXPECT_EQ(stdexp::nullopt, aArray[11]);
+    EXPECT_EQ(stdexp::nullopt, aArray[12]);
     EXPECT_EQ(21, aArray[13]);
     EXPECT_EQ(30, aArray[14]);
 }
