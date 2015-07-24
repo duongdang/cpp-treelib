@@ -15,7 +15,9 @@
 #include <IntervalTreeTest.hpp>
 #include <vector>
 #include <algorithm>
-#include <boost/optional.hpp>
+#include <experimental/optional>
+
+namespace stdexp = std::experimental;
 
 namespace treelib {
 namespace bst {
@@ -72,15 +74,15 @@ void IntervalTreeTest::SetUp() {
     }
 }
 
-bool operator== (const boost::optional<std::tuple<int, int, int, int, char> >& iExpected,
+bool operator== (const stdexp::optional<std::tuple<int, int, int, int, char> >& iExpected,
                  IntervalTreeTest::NodeT::node_cptr ipNode) {
     if (iExpected) {
         if (!ipNode) {
             return false;
         }
-        return iExpected.get() == std::make_tuple(ipNode->_start, ipNode->_end, ipNode->_max,
-                                                    static_cast<int>(ipNode->_height),
-                                                    ipNode->_data);
+        return *iExpected == std::make_tuple(ipNode->_start, ipNode->_end, ipNode->_max,
+                                             static_cast<int>(ipNode->_height),
+                                             ipNode->_data);
     }
     else {
         return !ipNode;
@@ -114,12 +116,12 @@ TEST_F(IntervalTreeTest, Construct) {
     EXPECT_EQ(std::make_tuple(26, 26, 26, 1, 'j'), aNodes[6]);
     EXPECT_EQ(std::make_tuple( 0,  3,  3, 1, 'a'), aNodes[7]);
     EXPECT_EQ(std::make_tuple( 6, 10, 10, 1, 'c'), aNodes[8]);
-    EXPECT_EQ(boost::none,                           aNodes[9]);
-    EXPECT_EQ(boost::none,                           aNodes[10]);
-    EXPECT_EQ(boost::none,                           aNodes[11]);
+    EXPECT_EQ(stdexp::nullopt,                           aNodes[9]);
+    EXPECT_EQ(stdexp::nullopt,                           aNodes[10]);
+    EXPECT_EQ(stdexp::nullopt,                           aNodes[11]);
     EXPECT_EQ(std::make_tuple(19, 20, 20, 1, 'h'), aNodes[12]);
-    EXPECT_EQ(boost::none,                           aNodes[13]);
-    EXPECT_EQ(boost::none,                           aNodes[14]);
+    EXPECT_EQ(stdexp::nullopt,                           aNodes[13]);
+    EXPECT_EQ(stdexp::nullopt,                           aNodes[14]);
 }
 
 TEST_F(IntervalTreeTest, Find) {

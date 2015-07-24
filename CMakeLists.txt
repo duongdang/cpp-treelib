@@ -9,7 +9,7 @@ set (treelib_VERSION_TWEAK 0)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
-add_definitions(-std=c++11)
+add_definitions(-std=c++1y)
 
 include_directories("${PROJECT_SOURCE_DIR}/include")
 
